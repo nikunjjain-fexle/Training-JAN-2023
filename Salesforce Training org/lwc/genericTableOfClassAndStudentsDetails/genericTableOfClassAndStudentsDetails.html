@@ -1,0 +1,25 @@
+<template>
+    
+    <lightning-accordion active-section-name="A">
+        
+        <template for:each={listAllRecords} for:item="cl">
+            <lightning-accordion-section  label={cl.clRecord.Name} key={cl.clRecord.Id}>
+               
+                    <span><b>Class Name   : </b>{cl.clRecord.Name}</span>
+                    <br>
+                    <span><b>Board Name   : </b>{cl.clRecord.Board__c}</span>
+                    <br>
+                    <span><b>Active Class : </b>{cl.clRecord.Active__c}</span>
+                    <br>
+                    <span><b>School Name  : </b>{cl.clRecord.School__c}</span>
+                    <br>
+                    <span><b>No Of Students : </b>{cl.sizeOfStudents}</span>
+                <lightning-spinner alternative-text="Loading" if:false={isLoading} size="xx-small"></lightning-spinner>
+                <lightning-datatable key-field="Id" data={cl.listOfStudents}  columns={std}  onsave={handleSave} onrowaction={callRowAction}></lightning-datatable>
+                <br>
+            </lightning-accordion-section>
+        </template>
+    
+    </lightning-accordion>
+    
+</template>

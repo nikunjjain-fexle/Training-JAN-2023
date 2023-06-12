@@ -1,0 +1,15 @@
+<template>
+    <lightning-record-edit-form title="Contact Record Creation Page" >
+        <div class="slds-var-p-around_x-small">
+            <lightning-input value={recContact.FistName} label="FirstName" ></lightning-input>
+            <lightning-input value={recContact.LastName} label="LastName" onchange={handelLastNamechange} required="true"></lightning-input>
+            <lightning-input value={recContact.Email} label="Email" onchange={handelEmailchange}></lightning-input>
+            <lightning-input value={recContact.Phone} label="Phone" onchange={handelPhonechange}></lightning-input>
+            <lightning-input value={recordId} label="Account Name" required="true" disabled="true"></lightning-input>
+            <br>
+            <lightning-button label="Save Contact Record" onclick={CreateRecordOfContact} variant="brand"></lightning-button>
+
+        </div>
+    </lightning-record-edit-form >
+    
+</template>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Hereit Will Debug Fault Message If Any Fault Come During Record Creations</description>
+        <name>Debugging</name>
+        <label>Debugging Fault Error Message</label>
+        <locationX>440</locationX>
+        <locationY>278</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>Subflow :  Create Platform  Event Record {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subflow :  Create Platform  Event Record</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Here Will create Error Record By the Help Of Platform Event</description>
+        <name>Insert_Record</name>
+        <label>Insert Record</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <faultConnector>
+            <targetReference>Debugging</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>Element_Category__c</field>
+            <value>
+                <elementReference>varT_Element_Category</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Element_Name__c</field>
+            <value>
+                <elementReference>varT_ElementName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Exception_Message__c</field>
+            <value>
+                <elementReference>varT_ErrorMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Flow_Name__c</field>
+            <value>
+                <elementReference>VarT_Flow_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Object_API_Name__c</field>
+            <value>
+                <elementReference>varT_ObjectAPIName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Record_ID__c</field>
+            <value>
+                <elementReference>varT_RecordID</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Record_Name__c</field>
+            <value>
+                <elementReference>varT_RecordName</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Create_Flow_Exception_handling__e</object>
+    </recordCreates>
+    <startElementReference>Insert_Record</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <description>Here We will Hold Whatever Case Will perform</description>
+        <name>varT_Element_Category</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>here We will hold element name.</description>
+        <name>varT_ElementName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>hi</description>
+        <name>varT_ErrorMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Here We will Hold Flow Operation Name.</description>
+        <name>VarT_Flow_Name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This variable store object API Name.</description>
+        <name>varT_ObjectAPIName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Here we will add Record Id</description>
+        <name>varT_RecordID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>here we will hold Record name</description>
+        <name>varT_RecordName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

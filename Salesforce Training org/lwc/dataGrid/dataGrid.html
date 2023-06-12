@@ -1,0 +1,93 @@
+<!--
+*
+*  Purpose          :	Data Grid - LWC
+*
+*  Created Date     :   25-05-2023  
+*
+*  Created By       :  	Nikunj jain
+*
+*  Revision Logs    :  	V_1.0 - Created 
+*
+-->
+<template>
+
+    <!--Skeleton Loading markup to be displayed upto the point init logic is executing-->
+    <template if:false={state.initDone}>
+        <c-stencil-template flexipage-region-width={flexipageRegionWidth}></c-stencil-template>
+    </template>
+
+    <!--Markup to be displayed once init logic has been executed successfully-->
+    <template if:true={state.initDone}>
+
+        <lightning-card>
+
+            <div class={customDesignTokens.alignmentStyles}>
+
+                <template if:true={state.error}>
+                    <div class={customDesignTokens.borderStyles}>
+                        <b>{state.error}</b>
+                    </div>    
+                </template>
+
+                <template if:false={state.error}>
+
+                    <!--Generic Page Header -->
+                    <c-generic-page-header flexipage-region-width={flexipageRegionWidth} icon-name={iconName} alternative-text={alternativeText} icon-title={iconTitle} 
+                        header-title={headerTitle} header-sub-title={headerSubTitle}>
+                    </c-generic-page-header>
+
+                    <div class="slds-m-bottom_small"></div>
+
+                    <!--Data Grid Content -->
+                    <div class={customDesignTokens.borderStyles}>
+                        <c-data-grid-content object-name={objectName} fields-name={fieldsName} limit-value={limitValue} flexipage-region-width={flexipageRegionWidth}></c-data-grid-content>
+                    </div>
+
+                    <div class="slds-m-bottom_small"></div>
+
+                    <!--Enter Row Number Section -->
+                    <div class={customDesignTokens.borderStyles}>
+                        <lightning-layout horizontal-align="center" vertical-align="end">
+                            <lightning-layout-item size="4">
+                                <lightning-input type="text" name="rownumberinput" value={selectedRowsNumber} onchange={handleRowNumberChange} placeholder="type the row number.." label="Enter Row #"></lightning-input>
+                            </lightning-layout-item>
+                            
+                            <lightning-layout-item size="4">
+                                <lightning-button label="Select" onclick={updateRowsSelection} variant="success"></lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <div class="slds-m-bottom_small"></div>
+                    </div>    
+
+                    <div class="slds-m-bottom_small"></div>
+
+                    <!--Generic Data Table -->
+                    <div class={customDesignTokens.borderStyles}>
+                        <c-generic-table table-data={dataGridData} columns={columns} 
+                                            flexipage-region-width={flexipageRegionWidth} 
+                                            onselectedrowsdetails={handleRowsSelectionEvent}
+                        >
+                            <div class="slds-m-bottom_small"></div>
+                            <div class="slds-align_absolute-center">
+                                HEY!!!! THIS IS EMBEDDING VIA SLOT
+                            </div>
+
+                            <div class="slds-m-bottom_small"></div>
+                            <div slot="myNamedSlot" class="slds-align_absolute-center">
+                                <span>
+                                    <p>
+                                        HEY!!!! THIS IS NAMED SLOT
+                                    </p>
+                                </span>
+                            </div>
+                        </c-generic-table>
+                    </div>    
+                    
+                </template>
+
+            </div>
+
+        </lightning-card>
+
+    </template>
+</template>

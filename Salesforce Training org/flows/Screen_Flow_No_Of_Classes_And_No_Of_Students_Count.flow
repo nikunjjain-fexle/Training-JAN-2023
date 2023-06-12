@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <description>Here We will assign Total Classes Count</description>
+        <name>Set_Of_Class_Of_No_Of_Classes</name>
+        <label>Set Of Class Of No Of Classes</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>varN_TotalNumberOfClasses</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_Classs</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varN_totalNumberOfStudents</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_Students</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Details_Pages</targetReference>
+        </connector>
+    </assignments>
+    <description>Here we will created Screen flow to show on UI of No Of Classes</description>
+    <interviewLabel>Screen Flow : {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Screen Flow : No Of Classes And No Of Students Count</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Here we will get all class Record.</description>
+        <name>Get_Classs</name>
+        <label>Get Classs</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Students</targetReference>
+        </connector>
+        <filters>
+            <field>School__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordid</elementReference>
+            </value>
+        </filters>
+        <object>Class__c</object>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Here we will Query Student object</description>
+        <name>Get_Students</name>
+        <label>Get Students</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Of_Class_Of_No_Of_Classes</targetReference>
+        </connector>
+        <filters>
+            <field>Custom_School_Id__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordid</elementReference>
+            </value>
+        </filters>
+        <object>Student__c</object>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <screens>
+        <description>Here on This What you want details show you can on this Text</description>
+        <name>Details_Pages</name>
+        <label>DetailsPages</label>
+        <locationX>176</locationX>
+        <locationY>518</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Details</name>
+            <fieldText>&lt;p&gt;No of Classes ={!varN_TotalNumberOfClasses}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;No of Students ={!varN_totalNumberOfStudents}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Get_Classs</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <description>Here We will hold record Id Of Current stage.</description>
+        <name>recordid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>0</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Here we will hold number Of Classes values</description>
+        <name>varN_TotalNumberOfClasses</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Here we will hold Total Count of Students</description>
+        <name>varN_totalNumberOfStudents</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+</Flow>

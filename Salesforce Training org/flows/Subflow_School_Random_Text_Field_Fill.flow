@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Complete_Loop</name>
+        <label>Complete Loop</label>
+        <locationX>176</locationX>
+        <locationY>710</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>Var_RandomTextField</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <description>Assign value to Random Text</description>
+        <name>Assign_Value_For_India</name>
+        <label>Assign Value For India</label>
+        <locationX>264</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>Var_RandomTextField</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Welcome To india</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Over_The_School_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Here e will Assign value for USA to random Text</description>
+        <name>Assign_value_For_USA</name>
+        <label>Assign value For USA</label>
+        <locationX>528</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>Var_RandomTextField</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Welcome to USA</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Over_The_School_Records</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>here we will Add value in Random Text on School object  According the City.</description>
+        <name>Check_What_is_city</name>
+        <label>Check What is city</label>
+        <locationX>528</locationX>
+        <locationY>278</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_India</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Iterate_Over_The_School_Records.Country__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>IND</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Value_For_India</targetReference>
+            </connector>
+            <label>Yes India</label>
+        </rules>
+        <rules>
+            <name>Yes_USA</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Iterate_Over_The_School_Records.Country__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>USA</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_value_For_USA</targetReference>
+            </connector>
+            <label>Yes USA</label>
+        </rules>
+    </decisions>
+    <description>Here This subflow will perform logic to fill Random text Fill According to City.</description>
+    <interviewLabel>Subflow : School Random Text Field Fill {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subflow : School Random Text Field Fill</label>
+    <loops>
+        <description>Here we will iterate over Each record Of Schools</description>
+        <name>Iterate_Over_The_School_Records</name>
+        <label>Iterate Over The School Records</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <collectionReference>VarR_SchoolRecordDetails</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Check_What_is_city</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Complete_Loop</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Iterate_Over_The_School_Records</startElementReference>
+    <status>Active</status>
+    <variables>
+        <description>here we will hold Random Text</description>
+        <name>Var_RandomTextField</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Here We will Get and Set School Record Details.</description>
+        <name>VarR_SchoolRecordDetails</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>School</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Schools</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Field_Set_1 --></label>
+        <name>Field_Set_1</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Field_Set_2 --></label>
+        <name>Field_Set_2</name>
+    </fieldSets>
+    <fields>
+        <label><!-- About US --></label>
+        <name>About_US__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USA</masterLabel>
+            <translation><!-- USA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Estabilishment --></label>
+        <name>Date_of_Estabilishment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flow Element Category --></label>
+        <name>Flow_Element_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flow Element Name --></label>
+        <name>Flow_Element_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flow Error Message --></label>
+        <name>Flow_Error_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flow Error Occurred At --></label>
+        <name>Flow_Error_Occurred_At__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flow Logged In User --></label>
+        <name>Flow_Logged_In_User__c</name>
+        <relationshipLabel><!-- Schools --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Flow Name --></label>
+        <name>Flow_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flow Record Id --></label>
+        <name>Flow_Record_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Of Class --></label>
+        <name>No_Of_Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Of Student --></label>
+        <name>No_Of_Student__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Of Teachers --></label>
+        <name>No_Of_Teachers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Random Text --></label>
+        <name>Random_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stage --></label>
+        <name>Stage__c</name>
+        <picklistValues>
+            <masterLabel>Close Lost</masterLabel>
+            <translation><!-- Close Lost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Close Won</masterLabel>
+            <translation><!-- Close Won --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Documentation is Progrees</masterLabel>
+            <translation><!-- Documentation is Progrees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Perspective</masterLabel>
+            <translation><!-- Perspective --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total Year of Organization --></label>
+        <name>Total_Year_of_Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Website --></label>
+        <name>Website__c</name>
+    </fields>
+    <layouts>
+        <layout>School Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create New Class --></label>
+        <name>Create_New_Class</name>
+    </quickActions>
+    <sharingReasons>
+        <label><!-- Apex Sharing --></label>
+        <name>Apex_Sharing</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please enter valid date of estabilishment --></errorMessage>
+        <name>VR_Establishment_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Sorry You Can  not  Have any 1 Student on School --></errorMessage>
+        <name>VR_ExceptionErrorByPlatformEvent</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Query_Schools --></label>
+        <name>Query_Schools</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- School_Details --></label>
+        <name>School_Details</name>
+    </webLinks>
+</CustomObjectTranslation>

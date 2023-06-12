@@ -1,0 +1,195 @@
+<template>
+    <lightning-card>
+    <template if:false={state.initDone}>
+        <c-stencil-template flexipage-region-width={flexipageRegionWidth}></c-stencil-template>
+    </template>
+
+    <template if:true={state.initDone}>
+    
+    <header class="slds-card__header slds-media slds-media_center">
+        <div class="slds-media__figure">
+            <lightning-icon icon-name="standard:account" size="small"></lightning-icon>
+        </div>
+        <div class="slds-media__body slds-card__header-title slds-text-title_bold" style="font-size: 14px">
+            Custom Report
+        </div>
+    </header>
+    <div class="Container">
+        <lightning-combobox
+            name="Object Name"
+            label="Object Name"
+            placeholder="Choose Object"
+            onchange={handleChangeOnSelectObject}
+            value={objectApi}
+            options={statusOptions}
+        >
+        </lightning-combobox>
+        
+        
+        <lightning-dual-listbox
+            id="selectOptions"
+            name="Select Options"
+            label="Select Options"
+            source-label="Available Options"
+            selected-label="Selected Options"
+            options={listOptions}
+            value={fieldSelectValue}
+            required-options={requiredOptions}
+            onchange={hanldeChangeOnSelectField}
+            
+        >
+        </lightning-dual-listbox>
+        <br>
+    </div>  
+
+   <!--sTILL cOMPLETED-->     
+
+
+
+            <div style="margin-inline: 6px;">
+            
+            <div  class="slds-col button-row" style="text-align: left;">
+           
+                <div class="slds-col">    
+                <lightning-button if:true={isVisibleAddFilterButton} label="Add Filter" name="Add Filter" variant="brand" onclick={addRow} class="slds-m-top_small"></lightning-button>
+
+             
+                </div> 
+                <template if:true={isVisibleAddFilterButton}>
+                    <div class="slds-col">
+                    <lightning-button if:true={isVisibleAfterAddInputBoxButton} label="Add Limit" name="Add Limit" variant="brand" onclick={addLimit} style="margin-inline: -422px;" class="slds-m-top_small"></lightning-button>
+                    </div>
+                </template>
+                    
+            </div>
+
+            <div class="slds-col button-row">
+
+                <div class="slds-col button-row">
+                    <div style="margin-inline: 2px;">
+                        <lightning-input if:true={isVisibleAddLimitButton} type="text"  placeholder="Enter Limit" label="Limit" onchange={handleOnChangeLimit}  ></lightning-input>
+
+                    </div>
+
+                    <lightning-combobox
+                    style="margin-inline: 5px;"
+                    if:true={isCondition}
+                    required="true"
+                    name="Condition"
+                    label="Conditons"
+                    placeholder="Choose Conditons"
+                    onchange={handleChangeOnConditions}
+                    disabled={isOnRevomeField}
+                    options={listOfConditions}
+                    >
+                    </lightning-combobox>
+                    <lightning-input if:true={isVisibleCustomInput} style="margin-inline: px;" onchange={handleChangeOnCustomCondi} placeholder="Enter Custom Conditions"  label="Custom Conditions"></lightning-input>
+                    
+                </div>
+               
+            </div>
+            
+         <!--Here to start code of  AddFilter -->
+         <template for:each={comboxofAddFilter} for:item="acc" for:index="index"  >
+            <lightning-layout multiple-rows key={acc.Id} data-index={index} style="margin-inline: 6px;" >
+                 
+                <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+                   
+                    <lightning-combobox
+                        disabled={isOnRevomeField}
+                        name="Selected Field"
+                        label="Field Name"
+                        placeholder="Choose Field"
+                        value={value}
+                        onchange={hanldeChangeOnWhereclause}
+                        options={listOptions}
+                        >
+                    </lightning-combobox> 
+                </lightning-layout-item>
+           
+                <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+                    <lightning-combobox
+                        if:true={acc.operators}
+                        disabled={isOnRevomeField}
+                        name="Selected operater"
+                        label="Operator"
+                        placeholder="Choose Operator"
+                        
+                        options={acc.operators}
+                        onchange={hanldeChangeOnWhereSelect}
+                    >
+                    </lightning-combobox>
+                </lightning-layout-item>
+            
+            
+                <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+                    
+                    <template if:false={acc.isPickList}>
+                        <lightning-input type={acc.dataType} label={acc.label} disabled={isOnRevomeField}   onchange={handleOnChangeValue}></lightning-input>
+                    </template>
+
+                    <template if:true={acc.isPickList}>
+                        <lightning-combobox
+                            if:true={acc.pickListValues}
+                            disabled={isOnRevomeField}
+                            name="Selected picklist"
+                            label="Picklist"
+                            placeholder="Choose Picklist value"
+                            value={value}
+                            options={acc.pickListValues}
+                            onchange={handlChangeOnPickListValues}
+                        >
+                        </lightning-combobox>
+                    </template>
+
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+                    <a onclick={removeRow}> 
+                        <lightning-icon icon-name="utility:delete" size="small" style="margin-top : 9px" ></lightning-icon>
+                        <span class="slds-assistive-text">Delete</span>
+                    </a>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+    </div>
+
+
+
+
+
+
+
+
+
+        
+        <lightning-layout style="margin-inline: 16px;">
+            <lightning-layout-item size="">
+                <div class="slds-col">
+                    <lightning-button disabled={isGetRecord} label="Get Record" onclick={handleOnClickGetRecord}></lightning-button>
+                </div>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="">
+                <div class="slds-col">
+                    <lightning-button if:true={isVisibleClearAll} label="Clear All" name="Clear ALL" onclick={clearAllGoted} ></lightning-button>
+                </div>
+            </lightning-layout-item>
+            
+            <lightning-layout-item size="">
+                <div class="slds-col">
+                    <lightning-button if:true={isConditionOnMoreThanOn} label="Clear Filter"  name="Clear Filter" onclick={clearAllFilter} disabled={isClearFilter}></lightning-button>
+                </div>
+            </lightning-layout-item>
+        
+        </lightning-layout>
+   
+        
+        <div if:true={isVisibleDataTable}>
+            <lightning-spinner alternative-text="Loading" if:false={isLoading} size="xx-small"></lightning-spinner>
+            <lightning-datatable key-field="Id" data={finalGetRecords} columns={columns}  show-row-number-column="true" hide-checkbox-column="true"></lightning-datatable>  
+        </div>
+    
+</template>
+</lightning-card>
+</template>

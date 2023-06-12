@@ -1,0 +1,52 @@
+<!--
+*
+*  Purpose          :	Generic (Base) Page Header - Lightning Web Component
+                        https://www.lightningdesignsystem.com/components/page-headers/?variant=base#site-main-content
+*
+*  Created Date     :  	12/09/2022
+*
+*  Created By       :  	Abhinav Sharma
+*
+*  Revision Logs    :  	V_1.0 - Created - 12/09/2022
+*
+-->
+<template>
+
+    <!--Markup to be displayed once init logic has been executed successfully-->
+    <template if:true={state.initDone}>
+
+        <div class="slds-page-header">
+            
+            <div class="slds-page-header__row">
+
+                <div class="slds-page-header__col-title">
+                    
+                    <div class="slds-media">
+
+                        <lightning-icon icon-name={iconName} alternative-text={alternativeText} title={iconTitle}></lightning-icon>
+                        
+                        <div class="slds-media__body">
+                        
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-p-left_small slds-truncate" title={headerTitle}>
+                                            {headerTitle}
+                                        </span>
+                                    </h1>
+                                </div>
+                            </div>
+
+                            <p class="slds-page-header__name-meta slds-p-left_small" title={headerSubTitle}>
+                                {headerSubTitle}
+                            </p>
+                    
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+</template>

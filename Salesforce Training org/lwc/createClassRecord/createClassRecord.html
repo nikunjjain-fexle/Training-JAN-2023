@@ -1,0 +1,18 @@
+<template>
+    <lightning-card>
+        <lightning-record-edit-form object-api-name="Class__c" onsuccess={createRecords}>
+            <div>
+                <lightning-input-field field-name="Name"></lightning-input-field>
+            <lightning-input-field field-name="School__c" value={recordId}></lightning-input-field>
+            <lightning-input-field field-name="Active__c"></lightning-input-field>
+            <lightning-input-field field-name="Board__c"></lightning-input-field>
+            </div>
+        
+
+    
+    <lightning-button  variant="brand" type="submit"  name="Save" label="Create Class"></lightning-button>
+    <br>
+</lightning-record-edit-form>
+    </lightning-card>
+    
+</template>

@@ -1,0 +1,14 @@
+<template>
+   <div class="h1">
+   
+      <lightning-input value={objectName} label="Object Name" onchange={handelFistNamechange} type="text"></lightning-input>
+      <lightning-input value={fieldName}  label="Field Name" onchange={getFieldName}  type="text"></lightning-input>
+      <lightning-input value={limit}      label="Limit" onchange={getLimit}  type="text"></lightning-input>
+      <br>
+      <lightning-button name="Search" label="search Record" onclick={getValueOfField}></lightning-button>
+      <br>
+
+      <lightning-datatable key-field="Id" data={finalGetRecords} columns={columns} ></lightning-datatable>
+      
+   </div>
+</template>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>School__c</entityName>
+    <fieldName>Stage__c</fieldName>
+    <masterLabel>New Path For School</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Name</fieldNames>
+        <fieldNames>Active__c</fieldNames>
+        <fieldNames>No_Of_Student__c</fieldNames>
+        <info>&lt;p&gt;Enter Here Documentation details&lt;/p&gt;</info>
+        <picklistValueName>Documentation is Progrees</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;ul&gt;&lt;li&gt;Enter Your perspective And some more Information&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Perspective</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

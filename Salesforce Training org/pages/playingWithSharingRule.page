@@ -1,0 +1,14 @@
+<!--
+ * Purpose      : Class to have With/Without Sharing Based concepts demonstration
+ * 
+ * Created By   : Nikunj jain
+ * 
+ * Created Date : 27-3-2023
+ * 
+ * Version :
+-->
+<apex:page standardController="School__c" extensions="playingWithSharingRule" lightningStylesheets="true" standardStylesheets="true" sidebar="false">
+    <H>
+        Loaded Successfully!!
+    </H>
+</apex:page>

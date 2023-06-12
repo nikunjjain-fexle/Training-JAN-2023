@@ -1,0 +1,22 @@
+.Container{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.slds-grid {
+    align-items: center;
+    }
+.slds-wrap {
+    flex-wrap: wrap;
+}
+.slds-col {
+    padding: 0.5rem;
+}
+
+.button-row {
+    display: flex;
+    
+}
+
+.button-row .slds-col {
+    margin-right: 10px;
+}

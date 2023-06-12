@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <description>Assign  Account Status field Values to Contact Field Status if Account status is not null</description>
+        <name>Set_Of_Account_Status</name>
+        <label>Set Of Account Status</label>
+        <locationX>50</locationX>
+        <locationY>551</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Status__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Account.Status__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Assign Property Status field Values to Contact Field Status if Account status is  null and Property Status field is not Null</description>
+        <name>Set_Of_Property_Status</name>
+        <label>Set Of Property Status</label>
+        <locationX>314</locationX>
+        <locationY>551</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Status__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Account.Property__r.Status__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Here We Confirm New Contact&apos;s Account id is not Null Or Null.</description>
+        <name>Check_Is_Account_Id_Is_Null_or_Not</name>
+        <label>Check Is Account Id Is Null or Not ?</label>
+        <locationX>578</locationX>
+        <locationY>311</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Account_Id_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.AccountId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Status_is_Null</targetReference>
+            </connector>
+            <label>Is Account Id Null ?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check here Account Status is null or not ?</description>
+        <name>Status_is_Null</name>
+        <label>Status is Null ?</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_Account_Status_is_not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account.Status__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Of_Account_Status</targetReference>
+            </connector>
+            <label>If Account Status is not Null</label>
+        </rules>
+        <rules>
+            <name>If_Account_Status_is_Null_And_Check_Property_is_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account.Property__r.Status__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Of_Property_Status</targetReference>
+            </connector>
+            <label>If Account Status is Null And Check Property is Null ?</label>
+        </rules>
+    </decisions>
+    <description>This Flow is Creation of Record Copy The Status Field Of Associate Field</description>
+    <interviewLabel>Record-Triggered : Contact before {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Record-Triggered : Contact before</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Check_Is_Account_Id_Is_Null_or_Not</startElementReference>
+    <status>Active</status>
+</Flow>

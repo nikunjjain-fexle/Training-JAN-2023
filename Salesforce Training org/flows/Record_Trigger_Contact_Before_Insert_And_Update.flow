@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Set_Active_Field</name>
+        <label>Set  Active Field</label>
+        <locationX>314</locationX>
+        <locationY>791</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Contact_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Here We are check If Active Contact is More than 2 . Them Current Contact Type Will be change to in Active</description>
+        <name>Set_Of_Active_Field_Contact</name>
+        <label>Set Of Active Field Contact</label>
+        <locationX>50</locationX>
+        <locationY>791</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Contact_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>In Active</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Of_Active_Field_Updating_Contacts</name>
+        <label>Set Of Active Field Updating Contacts</label>
+        <locationX>578</locationX>
+        <locationY>791</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Contact_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>In Active</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Of_Total_Actives_Contact</name>
+        <label>Set Of Total Actives Contact</label>
+        <locationX>446</locationX>
+        <locationY>551</locationY>
+        <assignmentItems>
+            <assignToReference>varN_TotalActiveContacts</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_Active_Contact_With_Assocaite_Account</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Upadtion_Or_Creation_Of_Contact</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Here We are check Account Ids is not null.</description>
+        <name>is_Account_Ids_Not_Null</name>
+        <label>is Account Ids Not Null ?</label>
+        <locationX>776</locationX>
+        <locationY>311</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Account_Id_is_not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Active_Contact_With_Assocaite_Account</targetReference>
+            </connector>
+            <label>Account Id is not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here this Decision is take What New Contact Will insert Or Existing Contact Will Update</description>
+        <name>Upadtion_Or_Creation_Of_Contact</name>
+        <label>Upadtion Or Creation Of Contact ?</label>
+        <locationX>446</locationX>
+        <locationY>671</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Insertion_of_Contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varN_TotalActiveContacts</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>2.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varN_TotalActiveContacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Of_Active_Field_Contact</targetReference>
+            </connector>
+            <label>If Total Of Current Record Of insert And existing Record Of Contact greather Than Equal To 2</label>
+        </rules>
+        <rules>
+            <name>insertion_Of_Contact_If_Total_Contact_is_less_than_Equal_to_2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varN_TotalActiveContacts</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>2.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varN_TotalActiveContacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Active_Field</targetReference>
+            </connector>
+            <label>insertion Of Contact If Total Contact is less than Equal to 2</label>
+        </rules>
+        <rules>
+            <name>Updation_Of_Existing_Contacts</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varN_TotalActiveContacts</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>2.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varN_TotalActiveContacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Of_Active_Field_Updating_Contacts</targetReference>
+            </connector>
+            <label>Updation Of Existing Contacts</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <description>This Formula Field Tell About The case is Creation Or Updation</description>
+        <name>NewOROldRecord</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>Record-Trigger : Contact Before Insert And Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Record-Trigger : Contact Before Improment Purpose</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Here Get All Active Account Related Assocaited object</description>
+        <name>Get_Active_Contact_With_Assocaite_Account</name>
+        <label>Get Active Contact With Assocaite Account</label>
+        <locationX>446</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Of_Total_Actives_Contact</targetReference>
+        </connector>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Contact_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <startElementReference>is_Account_Ids_Not_Null</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <description>This Varible is store Total Active Contact Size</description>
+        <name>varN_TotalActiveContacts</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+</Flow>

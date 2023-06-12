@@ -1,0 +1,50 @@
+<template>
+    <div class="slds-card slds-p-around_medium">
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                
+                <lightning-input label="Searchable Combobox"  variant="label-hidden" type="search" onchange={handleOnSearch} value={selectedPillValue} onfocus={showPicklistOptions} >
+                </lightning-input>
+                <div if:true={resultOfObject} class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"
+                    role="listbox">
+                    <ul if:true={isShow} class="slds-listbox slds-listbox_vertical" role="presentation">
+                        <template for:each={resultOfObject} for:item="item">
+                            <li if:true={isShow} key={item.Id} role="presentation" class="slds-listbox__item">
+                                
+                                <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small " data-recid={item.Id} data-name={item.Name} onclick={selectSearchResult}  role="option">
+
+                                    <span class="slds-icon_container" >
+                                        <lightning-icon icon-name={iconName} size="small" alternative-text="icon" ></lightning-icon>  
+                                    </span>
+                                    <span class="slds-media__body">
+                                        <span class="slds-truncate" title={item.label} style="padding-left: 8px;">
+                                            {item.Name}
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+
+                        </template>
+                        <li if:true={isShow} role="presentation" class="slds-listbox__item">
+                            <div class="modal-container" if:true={isShow} onclick={handleNewRecord}>
+                              <span class="slds-media__body">
+                                <span if:true={isShow} class="slds-truncate" style="padding-left: 0px;" >
+                                    <lightning-button-icon icon-name="utility:add"  size="medium" variant="bare" alternative-text="Add" onclick={handleOnCreateRecord} icon-position="left"  ></lightning-button-icon> New   {objectName}
+                                </span>
+                                <span>
+                                   
+                                </span>
+                              </span>
+                            </div>
+                          </li>  
+                    </ul> 
+                                    
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <div if:true={isFullScreen}>
+        <c-create-record-of-custom-look-up  ></c-create-record-of-custom-look-up>
+    </div>
+</template>

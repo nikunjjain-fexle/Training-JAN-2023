@@ -1,0 +1,46 @@
+<!--
+/*
+ * Purpose       : HTML For School Child Record Show on Table
+ * 
+ * Created By    : Nikunj jain
+ * 
+ * Created Date  : 19-05-2023
+ * 
+ * Revision Log  : V_1.0 Created  19-05-2023
+ *               : V_1.1 Modified By nikunj jain 20-05-23 Add delete Functionality
+ *               : V_1.2 Modified By nikunj jain 20-05-23 Add Edit Functionality
+ */
+-->
+<template>
+    <template if:false={state.initDone}>
+        <c-stencil-template flexipage-region-width={flexipageRegionWidth}></c-stencil-template>
+        </template>
+        <template if:true={state.initDone}>
+            <lightning-accordion active-section-name="A" >
+                <template for:each={listOfClass} for:item="acc">
+                    <lightning-accordion-section key={acc.id} label={acc.Name}>  
+                        <span>
+                            <div>
+                                <div style="display: inline;">
+                                    <span><b>Class Name   : </b>{acc.Name}</span>
+                                    <br>
+                                    <span><b>Board Name   : </b>{acc.Board__c}</span>
+                                    <br>
+                                </div>
+                                <div style="display: inline;">
+                                    <span><b>Active Class : </b>{acc.Active__c}</span>
+                                    <br>
+                                    <span><b>School Name  : </b>{acc.School__c}</span>
+                                </div>
+                            </div>
+                        </span>
+                        <lightning-datatable key-field="Id" data={acc.Students__r} draft-values={draftValues} columns={std}  onsave={handleSave} oncellchange={getRowEditDetails} onrowaction={callRowAction} onrowselection={getSelectedRecords}></lightning-datatable>
+                        <br>
+                        <lightning-button class="btn1" label={buttonLabel} icon-name="utility:delete"  onclick={handleConfirmClick} disabled={isTrue}></lightning-button>
+                        <!--<lightning-icon icon-name="action:delete" label={buttonLabel} onclick={handleConfirmClick} disabled={isTrue} alternative-text="Delete" title="Delete"></lightning-icon> -->
+                        <lightning-button class="btn2" label={buttonLabelUpdate} icon-name="utility:update"  onclick={handleConfirmOnUpdateClick} disabled={isUpdateTrue}></lightning-button>
+                    </lightning-accordion-section>       
+            </template>
+        </lightning-accordion>
+    </template>
+</template>

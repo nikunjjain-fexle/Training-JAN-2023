@@ -1,0 +1,16 @@
+@import 'c/cssLibrary';
+
+/*https://newstechnologystuff.com/2021/05/16/styling-hooks-for-lightning-web-components/*/
+.auratokendiv
+{
+	color: var(--c-myTextColor);
+}
+
+/*
+	https://automationchampion.com/2022/09/10/top-5-lightning-web-component-gems-of-salesforce-winter23-release/
+	https://www.lightningdesignsystem.com/design-tokens/#category-text-color
+*/
+.lwctokendiv
+{
+	color: var(--lwc-colorTextError);
+}

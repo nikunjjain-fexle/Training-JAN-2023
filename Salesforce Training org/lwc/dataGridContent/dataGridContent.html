@@ -1,0 +1,32 @@
+<!--
+*
+*  Purpose          :	Data Grid Content - LWC
+*
+*  Created Date     :  	26-05-2023
+*
+*  Created By       :  	Nikunj jain
+*
+*  Revision Logs    :  	V_1.0 - Created 
+*
+-->
+<template>
+
+    <!--Markup to be displayed once init logic has been executed successfully-->
+    <template if:true={state.initDone}>
+
+        <span><b>Object API Name : </b></span>
+        <span>{objectName}</span>
+        
+        <div class="slds-m-bottom_small"></div>
+
+        <span><b>Fields API Name : </b></span>
+        <span>{fieldsName}</span>
+        
+        <div class="slds-m-bottom_small"></div>
+
+        <span><b>LIMIT Value : </b></span>
+        <span>{limitValue}</span>
+        
+    </template>
+
+</template>

@@ -1,0 +1,40 @@
+<!--
+*
+*  Purpose          :   VF Page to build custom detail page for Account object using standard controller.
+*
+*  Created Date     :   30-04-2023
+*
+*  Created By       :   Nikunj jain
+*
+*  Revision Logs    :   V_1.0 - Created
+*
+-->
+<apex:page sidebar="false" cache="false" lightningStylesheets="true" controller="GenericDetailPageUsingFSController" 
+           label="Generic Detail Page" standardStylesheets="true" title="Generic Details Page">
+    
+    <apex:form >
+        
+        <apex:pageMessages ></apex:pageMessages>
+        
+        <!--If both the field sets exists-->
+        
+        <apex:pageBlock mode="detail" rendered="{!displayFieldSetSections}" title="{!formTitle}">
+            
+            <apex:pageBlockSection title="Field Set 1 Fields - Section">
+                <apex:repeat value="{!listOfFieldSet1FieldsDetails }" var="f">
+                    <apex:outputField value="{!sobjRecord[f.fieldPath]}"/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Field Set 2 Fields - Section">
+                <apex:repeat value="{!listOfFieldSet2FieldsDetails}" var="f">
+                    <apex:inputField value="{!sobjRecord[f.fieldPath]}" 
+                                     required="{!OR(f.required, f.dbrequired)}"/>
+                </apex:repeat>
+            </apex:pageBlockSection>  
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

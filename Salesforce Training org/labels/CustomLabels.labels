@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ADMIN_USER_EMAIL_ADDRESS</fullName>
+        <categories>School Trigger Helper</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ADMIN_USER_EMAIL_ADDRESS</shortDescription>
+        <value>nikunj.jain@fexle.com</value>
+    </labels>
+    <labels>
+        <fullName>ENDPOINT_HEROKU_APPLICATION</fullName>
+        <categories>school Trigger Handler</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ENDPOINT_HEROKU_APPLICATION</shortDescription>
+        <value>https://th-apex-http-callout.herokuapp.com/animals/</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_INTEGRATION_USER_IS_DEACTIVED</fullName>
+        <categories>School Trigger Helper</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ERROR_INTEGRATION_USER_IS_DEACTIVED</shortDescription>
+        <value>User is Not Active.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_INVALID_ID_VALUE</fullName>
+        <categories>GenericDetailsPage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ERROR_INVALID_ID_VALUE</shortDescription>
+        <value>This Id Is not Correct Please Enter Valid Record Id</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_MSG_SCHOOL_DETAILS_MISSING</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ERROR MSG SCHOOL DETAILS MISSING</shortDescription>
+        <value>Please Enter Valid name</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_MSG_UNABLE_TO_FIND_SCHOOL_BY_NAME</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ERROR MSG UNABLE TO FIND SCHOOL BY NAME</shortDescription>
+        <value>SORRY i&apos;m not Find to enable School By Name</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_URL_PARAMETER_ID_MISSING</fullName>
+        <categories>GenericDetailsPage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ERROR_URL_PARAMETER_ID_MISSING</shortDescription>
+        <value>Please Enter Valid Id Record Id</value>
+    </labels>
+    <labels>
+        <fullName>GENERIC_DETAILS_PAGE_FIELD_SET_NAMES</fullName>
+        <categories>GenericDetailsPage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GENERIC_DETAILS_PAGE_FIELD_SET_NAMES</shortDescription>
+        <value>Field_Set_1,Field_Set_2</value>
+    </labels>
+    <labels>
+        <fullName>INTEGERATION_USER_RECORD_ID</fullName>
+        <categories>School Trigger Helper</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>INTEGERATION_USER_RECORD_ID</shortDescription>
+        <value>0052w00000DfAgoAAF</value>
+    </labels>
+    <labels>
+        <fullName>NO_OF_TEACHERS_THRESHOLD_FOR_SHARING_RECALCULATION</fullName>
+        <categories>School Trigger Helper</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NO_OF_TEACHERS_THRESHOLD_FOR_SHARING_RECALCULATION</shortDescription>
+        <value>10</value>
+    </labels>
+    <labels>
+        <fullName>REPLY_TO_EMAIL_ADDRESS</fullName>
+        <categories>School Trigger Helper</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>REPLY_TO_EMAIL_ADDRESS</shortDescription>
+        <value>nikunj.jain@fexle.com</value>
+    </labels>
+    <labels>
+        <fullName>SUBFLOW_OF_STUDENT_HADLER</fullName>
+        <categories>Flow</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SUBFLOW OF STUDENT HADLER</shortDescription>
+        <value>Subflow : Student Handler</value>
+    </labels>
+    <labels>
+        <fullName>SUB_FLOW_NAME_CREATE_FLOW_EXCEPTION_RECORD</fullName>
+        <categories>Subflow</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SUB_FLOW_NAME_CREATE_FLOW_EXCEPTION_RECORD</shortDescription>
+        <value>Subflow: Create Flow Exception Record</value>
+    </labels>
+    <labels>
+        <fullName>TEARCHER_USER_RECORD_ID</fullName>
+        <categories>Integration</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TEARCHER_USER_RECORD_ID</shortDescription>
+        <value>0052w00000DAIUEAA5</value>
+    </labels>
+    <labels>
+        <fullName>WIKIPEDIA_SEARCH_URL_PREFIX</fullName>
+        <categories>LWC</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>WIKIPEDIA_SEARCH_URL_PREFIX</shortDescription>
+        <value>https://en.wikipedia.org/wiki/Special:Search?go=Go&amp;amp;search=</value>
+    </labels>
+</CustomLabels>

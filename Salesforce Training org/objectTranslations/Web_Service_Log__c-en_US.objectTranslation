@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Web Service Log</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Web Service Logs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Direction --></label>
+        <name>Direction__c</name>
+    </fields>
+    <fields>
+        <label><!-- Endpoint --></label>
+        <name>Endpoint__c</name>
+    </fields>
+    <fields>
+        <label><!-- Error Message --></label>
+        <name>Error_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record ID --></label>
+        <name>Record_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Message Log --></label>
+        <name>Request_Message_Log__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Message --></label>
+        <name>Request_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Sent --></label>
+        <name>Request_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response Message Log --></label>
+        <name>Response_Message_Log__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response Message --></label>
+        <name>Response_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response Recieved --></label>
+        <name>Response_Recieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Web Service Class --></label>
+        <name>Web_Service_Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- Web Service Method --></label>
+        <name>Web_Service_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Web Service Name --></label>
+        <name>Web_Service_Name__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

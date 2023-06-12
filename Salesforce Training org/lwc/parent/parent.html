@@ -1,0 +1,27 @@
+<template>
+    
+    <lightning-card title="Parent ">
+
+        <lightning-layout vertical-align="start">
+
+            <lightning-layout-item size="12">
+                
+                <div class="slds-box_small">
+                    
+                    <div class="slds-box slds-m-around_small">
+                        <lightning-button label="Delete Grand Child" variant="destructive" onclick={handleOnClickDeleteGrand}></lightning-button>
+                        <template if:true={showGrandChildComp}>
+                            <c-grand-child></c-grand-child>
+
+                        </template>   
+                       
+                    </div>
+
+                </div>
+            </lightning-layout-item>
+            
+        </lightning-layout>
+    
+    </lightning-card>
+  
+</template>

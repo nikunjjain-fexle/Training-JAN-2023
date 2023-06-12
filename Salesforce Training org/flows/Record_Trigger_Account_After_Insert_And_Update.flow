@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <description>Here We will check What case will have to execute logic According to Conditions.</description>
+        <name>Is_insert_or_Update_Account_Record</name>
+        <label>Is insert or Update Account Record ?</label>
+        <locationX>314</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Insert</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>for_InsertOrUpdateCase</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>We_will_Call_subflow_to_Create_Contact_Records</targetReference>
+            </connector>
+            <label>Insert</label>
+        </rules>
+        <rules>
+            <name>Updation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>This_Subflow_will_be_execute_on_Account_Type_field_will_change</targetReference>
+            </connector>
+            <label>Updation</label>
+        </rules>
+    </decisions>
+    <description>Here This Main Flow Of Account object. Where We will take Two Case insert and update.</description>
+    <formulas>
+        <description>This formula will help to recognize to What is exactly Case.</description>
+        <name>for_InsertOrUpdateCase</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>Record-Trigger : Account After Insert And Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Record-Trigger : Account After Insert And Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Is_insert_or_Update_Account_Record</startElementReference>
+    <status>Active</status>
+    <subflows>
+        <description>Here we add Account handler Subflow to handle whole logic of updation on Type field change</description>
+        <name>This_Subflow_will_be_execute_on_Account_Type_field_will_change</name>
+        <label>This Subflow will be execute on Account Type field will change</label>
+        <locationX>314</locationX>
+        <locationY>455</locationY>
+        <flowName>Subflow_Account_handler</flowName>
+        <inputAssignments>
+            <name>varB_InsertCase</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_AccountId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_TypeOfAccount</name>
+            <value>
+                <elementReference>$Record.Type</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <description>Here we will call Subflow and passing record of account and create contact Record</description>
+        <name>We_will_Call_subflow_to_Create_Contact_Records</name>
+        <label>We will Call subflow to Create Contact Records</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <flowName>Subflow_Account_handler</flowName>
+        <inputAssignments>
+            <name>varB_InsertCase</name>
+            <value>
+                <elementReference>for_InsertOrUpdateCase</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_AccountContactInforFieldDetails</name>
+            <value>
+                <elementReference>$Record.Contact_Information__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_AccountId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

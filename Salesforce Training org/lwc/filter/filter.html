@@ -1,0 +1,13 @@
+<template>
+  <template for:each={customConditions} for:item="condition" for:index="index">
+    <div key={condition.index} class="custom-condition">
+        <!-- Render the input fields and controls for each custom condition -->
+        <lightning-input label="Field" value={condition.field} onchange={handleFieldChange}></lightning-input>
+        <lightning-input label="Operator" value={condition.operator} onchange={handleOperatorChange}></lightning-input>
+        <lightning-input label="Value" value={condition.value} onchange={handleValueChange}></lightning-input>
+        <lightning-button label="Remove" onclick={handleRemoveCondition} data-index={index}></lightning-button>
+    </div>
+</template>
+<lightning-button label="Add Row" onclick={addRow}></lightning-button>
+
+</template>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Students</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active Student --></label>
+        <name>Active_Student__c</name>
+    </fields>
+    <fields>
+        <label><!-- Age --></label>
+        <name>Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attendance --></label>
+        <name>Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bright Student --></label>
+        <name>Bright_Student__c</name>
+    </fields>
+    <fields>
+        <label><!-- CheckBox --></label>
+        <name>CheckBox__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Class --></label>
+        <name>Class__c</name>
+        <relationshipLabel><!-- Students --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Custom School Id --></label>
+        <name>Custom_School_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Birth --></label>
+        <name>Date_of_Birth__c</name>
+    </fields>
+    <fields>
+        <label><!-- Design term --></label>
+        <name>Design_term__c</name>
+        <picklistValues>
+            <masterLabel>All of the above</masterLabel>
+            <translation><!-- All of the above --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Architecture</masterLabel>
+            <translation><!-- Architecture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Capx</masterLabel>
+            <translation><!-- Capx --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inliecte</masterLabel>
+            <translation><!-- Inliecte --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Father Email --></label>
+        <name>Father_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Father Name --></label>
+        <name>Father_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Google Info --></label>
+        <name>Google_Info__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Of Classes --></label>
+        <name>No_Of_Classes__c</name>
+    </fields>
+    <fields>
+        <label><!-- # Of Leave Days --></label>
+        <name>Of_Leave_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone Number --></label>
+        <name>Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rank Number --></label>
+        <name>Rank_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Name --></label>
+        <name>School_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Students --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approval</masterLabel>
+            <translation><!-- Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rajected</masterLabel>
+            <translation><!-- Rajected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Student Email --></label>
+        <name>Student_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test TBD --></label>
+        <name>Test_TBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Number --></label>
+        <name>Total_Number__c</name>
+    </fields>
+    <layouts>
+        <layout>General</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Govt_Affiliated</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create New Note --></label>
+        <name>NewEmailStudent</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- General --></label>
+        <name>General</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Govt_Affiliated --></label>
+        <name>Govt_Affiliated</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please Enter True Check Box For Updating Field --></errorMessage>
+        <name>VR_For_Check_CheckBox_Is_True_Update</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You Can Not Update  this Student --></errorMessage>
+        <name>VR_For_That_Student_Will_Not_Deleted</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Enter Only Alphabetic Values --></errorMessage>
+        <name>VR_Only_Contain_Alphabetic_Values</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please type 10 digit only --></errorMessage>
+        <name>VR_Phone_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter valid birth date. --></errorMessage>
+        <name>VR_Student_Age</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Go_On_Object_NJ --></label>
+        <name>Go_On_Object_NJ</name>
+    </webLinks>
+    <workflowTasks>
+        <name>Verify_Document</name>
+        <subject><!-- Verify Document --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

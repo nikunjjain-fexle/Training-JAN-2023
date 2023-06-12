@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>54.0</apiVersion>
+	<isExposed>true</isExposed>
+	<masterLabel>Data Grid</masterLabel>
+	<description>Data Grid Component to display different object records using standard LWC table component.</description>
+	<targets>
+		<target>lightning__RecordPage</target>
+		<target>lightning__AppPage</target>
+		<target>lightning__HomePage</target>
+	</targets>
+	<targetConfigs>
+      <targetConfig targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage">
+          <property label="Object API Name" name="objectName" type="String" description="Specify the object API Name here.." default="Account" required="true"/>
+		  <property label="Fields API Names" name="fieldsName" type="String" description="Specify the fields API Name here.." default="Id" required="true"/>
+		  <property label="Limit" name="limitValue" type="Integer" description="Specify the Limit Value here.." default="1" required="true"/>
+		  <property name="firstColumnAsRecordHyperLink" label="First Column As RecordHyperLink" type="String" datasource="Yes,No" default="Yes"/> 
+
+		  <property label="Header Icon Name" name="iconName" type="String" description="Specify the Header Icon name here..." default="custom:custom40" required="true"/>
+		  <property label="Header Icon Title" name="iconTitle" type="String" description="Specify the Header Icon Title here.." default="Account" required="true"/>
+		  <property label="Header Title" name="headerTitle" type="String" description="Specify the Header Title here.." default="Accounts" required="true"/>
+		  <property label="Header Sub Title" name="headerSubTitle" type="String" description="Specify the Header Sub Title here.." default="All Accounts" required="true"/>
+		  
+
+      </targetConfig>
+  </targetConfigs>
+</LightningComponentBundle>

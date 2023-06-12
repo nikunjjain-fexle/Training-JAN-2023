@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Beawar</fullName>
+        <default>false</default>
+        <label>Beawar</label>
+    </customValue>
+    <customValue>
+        <fullName>Bikaner</fullName>
+        <default>false</default>
+        <label>Bikaner</label>
+    </customValue>
+    <customValue>
+        <fullName>Dehli</fullName>
+        <default>false</default>
+        <label>Dehli</label>
+    </customValue>
+    <customValue>
+        <fullName>Dungarpur</fullName>
+        <default>false</default>
+        <label>Dungarpur</label>
+    </customValue>
+    <customValue>
+        <fullName>Jaipur</fullName>
+        <default>false</default>
+        <label>Jaipur</label>
+    </customValue>
+    <customValue>
+        <fullName>Pune</fullName>
+        <default>false</default>
+        <label>Pune</label>
+    </customValue>
+    <customValue>
+        <fullName>Udaipur</fullName>
+        <default>false</default>
+        <label>Udaipur</label>
+    </customValue>
+    <description>Every object can select own City</description>
+    <masterLabel>City</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>New_Class_Count</name>
+        <label>New Class Count</label>
+        <locationX>930</locationX>
+        <locationY>1982</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Old_Class_Count</targetReference>
+        </connector>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>varN_NewClassCount</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>New_Class_id</name>
+        <label>New Class id</label>
+        <locationX>798</locationX>
+        <locationY>638</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Check_For_old_Class</targetReference>
+        </connector>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>varT_NewClassSchoolIds</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Old_Class_Count</name>
+        <label>Old Class Count</label>
+        <locationX>930</locationX>
+        <locationY>2102</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Students_New_And_Old</targetReference>
+        </connector>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>varN_OldClassCount</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Old_Class_id</name>
+        <label>Old Class id</label>
+        <locationX>798</locationX>
+        <locationY>1094</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Class_New_And_Old</targetReference>
+        </connector>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>varT_OldClassSchoolIds</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>update_case</name>
+        <label>update case</label>
+        <locationX>930</locationX>
+        <locationY>278</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Check_For_New_Classes</targetReference>
+        </connector>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <stringValue>update case</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <description>Here We will Maintain Field Value By instance Of School.</description>
+        <name>New_School_Instance</name>
+        <label>New School Instance</label>
+        <locationX>798</locationX>
+        <locationY>3014</locationY>
+        <assignmentItems>
+            <assignToReference>varR_NewSchoolInstance.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varT_NewClassSchoolIds</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_NewSchoolInstance.No_Of_Student__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varN_newStudentCount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_NewSchoolInstance.No_Of_Class__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varN_NewClassCount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_ListOfSchoolDetails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varR_NewSchoolInstance</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Check_old_Class_School_ids_Null</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Here We will Maintain Field Value By instance Of School.</description>
+        <name>old_School_Instance</name>
+        <label>old School Instance</label>
+        <locationX>798</locationX>
+        <locationY>3350</locationY>
+        <assignmentItems>
+            <assignToReference>varR_OldSchoolInstance.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varT_OldClassSchoolIds</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_OldSchoolInstance.No_Of_Student__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varN_oldStudentsCount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_OldSchoolInstance.No_Of_Class__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varN_OldClassCount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_ListOfSchoolDetails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varR_OldSchoolInstance</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Final_Update</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>here We will Add 1 by If New Class Will Existing</description>
+        <name>Set_Class_Of_New</name>
+        <label>Set Class Of New</label>
+        <locationX>1018</locationX>
+        <locationY>1670</locationY>
+        <assignmentItems>
+            <assignToReference>varN_NewClassCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Class_Old_And_New</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>here We will Add 1 by If Old Class Will Existing</description>
+        <name>Set_Class_Of_Old</name>
+        <label>Set Class Of Old</label>
+        <locationX>1282</locationX>
+        <locationY>1670</locationY>
+        <assignmentItems>
+            <assignToReference>varN_OldClassCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Class_Old_And_New</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Here We will add new Class School Ids</description>
+        <name>Set_New_Class_School_Ids</name>
+        <label>Set  New Class School Ids</label>
+        <locationX>798</locationX>
+        <locationY>518</locationY>
+        <assignmentItems>
+            <assignToReference>varT_NewAndOldClassSchoolId</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varT_NewClassSchoolIds</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>New_Class_id</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Here We will add old Class School Ids</description>
+        <name>Set_old_Class_School_Ids</name>
+        <label>Set  old Class School Ids</label>
+        <locationX>798</locationX>
+        <locationY>974</locationY>
+        <assignmentItems>
+            <assignToReference>varT_NewAndOldClassSchoolId</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varT_OldClassSchoolIds</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Old_Class_id</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Here We will perfome on Assign logic. We will assign Count of Classes to other variable.</description>
+        <name>Set_School</name>
+        <label>Set School</label>
+        <locationX>50</locationX>
+        <locationY>638</locationY>
+        <assignmentItems>
+            <assignToReference>varR_InstanceOFSchool.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varT_SchoolIds</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_InstanceOFSchool.No_Of_Class__c</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_Classes</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_InstanceOFSchool.Random_Text__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varT_RandomText</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_ListOfSchoolDetails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varR_InstanceOFSchool</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Copy_Of_New_Record_Of_Insert_Class</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>here We will Add 1 by If New Students Will Existing</description>
+        <name>Set_Students_Of_New</name>
+        <label>Set Students Of New</label>
+        <locationX>1018</locationX>
+        <locationY>2582</locationY>
+        <assignmentItems>
+            <assignToReference>varN_newStudentCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Students_Old_And_New</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>here We will Add 1 by If Old Students Will Existing</description>
+        <name>Set_Students_Of_Old</name>
+        <label>Set Students Of Old</label>
+        <locationX>1282</locationX>
+        <locationY>2582</locationY>
+        <assignmentItems>
+            <assignToReference>varN_oldStudentsCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Students_Old_And_New</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Here We will take Decision For New Classes</description>
+        <name>Check_For_New_Classes</name>
+        <label>Check For New Classes</label>
+        <locationX>930</locationX>
+        <locationY>398</locationY>
+        <defaultConnector>
+            <targetReference>Check_For_old_Class</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>New_Classes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_NewClassSchoolIds</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_New_Class_School_Ids</targetReference>
+            </connector>
+            <label>New Classes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here We Will Check old Class</description>
+        <name>Check_For_old_Class</name>
+        <label>Check For old Class</label>
+        <locationX>930</locationX>
+        <locationY>854</locationY>
+        <defaultConnector>
+            <targetReference>Get_Class_New_And_Old</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>New_Old_Class</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_OldClassSchoolIds</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_old_Class_School_Ids</targetReference>
+            </connector>
+            <label>New Old Class</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here We take Decision on new And old Class Count.</description>
+        <name>Check_New_And_Old_Class</name>
+        <label>Check New And Old Class</label>
+        <locationX>1282</locationX>
+        <locationY>1550</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Through_Class_Old_And_New</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_New_Class</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Class_Old_And_New.School__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>varT_NewClassSchoolIds</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Class_Of_New</targetReference>
+            </connector>
+            <label>Yes New Class</label>
+        </rules>
+        <rules>
+            <name>No_Old_Class</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Class_Old_And_New.School__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>varT_OldClassSchoolIds</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Class_Of_Old</targetReference>
+            </connector>
+            <label>No Old Class</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here We take Decision on new And old Students Count.</description>
+        <name>Check_New_And_Old_Students</name>
+        <label>Check New And Old Students</label>
+        <locationX>1282</locationX>
+        <locationY>2462</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Through_Students_Old_And_New</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_New_Students</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Students_Old_And_New.Custom_School_Id__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>varT_NewClassSchoolIds</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Students_Of_New</targetReference>
+            </connector>
+            <label>Yes New Students</label>
+        </rules>
+        <rules>
+            <name>No_Old_Students</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Students_Old_And_New.Custom_School_Id__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>varT_OldClassSchoolIds</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Students_Of_Old</targetReference>
+            </connector>
+            <label>No Old Students</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here We will take Decision What logic will be Execute and Performe.</description>
+        <name>Is_case_Insert_And_Update</name>
+        <label>Is Case Insert And Update ?</label>
+        <locationX>644</locationX>
+        <locationY>158</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Insert</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varB_InsertionCase</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varB_UpdationCase</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Classes</targetReference>
+            </connector>
+            <label>Insert</label>
+        </rules>
+        <rules>
+            <name>Update</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varB_InsertionCase</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varB_UpdationCase</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>update_case</targetReference>
+            </connector>
+            <label>Update</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here We check School ids is null or not?</description>
+        <name>Is_Check_New_Class_School_ids_Null</name>
+        <label>Is Check New Class School ids Null ?</label>
+        <locationX>930</locationX>
+        <locationY>2894</locationY>
+        <defaultConnector>
+            <targetReference>Is_Check_old_Class_School_ids_Null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_NewClassSchoolIds</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>New_School_Instance</targetReference>
+            </connector>
+            <label>No Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here We check School ids is null or not?</description>
+        <name>Is_Check_old_Class_School_ids_Null</name>
+        <label>Is Check old Class School ids Null ?</label>
+        <locationX>930</locationX>
+        <locationY>3230</locationY>
+        <defaultConnector>
+            <targetReference>Final_Update</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_Null_Ids</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_OldClassSchoolIds</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>old_School_Instance</targetReference>
+            </connector>
+            <label>No Null Ids</label>
+        </rules>
+    </decisions>
+    <description>Here This Subflow Logic Will Performe on Insert And Update case.</description>
+    <interviewLabel>Subflow : Class Handler. {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subflow : Class Handlers</label>
+    <loops>
+        <description>Here We will iterate Over Collection Of New and old Class.</description>
+        <name>Loop_Through_Class_Old_And_New</name>
+        <label>Loop Through Class Old And New</label>
+        <locationX>930</locationX>
+        <locationY>1430</locationY>
+        <collectionReference>Get_Class_New_And_Old</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Check_New_And_Old_Class</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>New_Class_Count</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Here We will iterate Over Collection Of New and old Students .</description>
+        <name>Loop_Through_Students_Old_And_New</name>
+        <label>Loop Through Students Old And New</label>
+        <locationX>930</locationX>
+        <locationY>2342</locationY>
+        <collectionReference>Get_Students_New_And_Old</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Check_New_And_Old_Students</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Is_Check_New_Class_School_ids_Null</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>here we will create my Class Object Record Copy of insert new class Record</description>
+        <name>Create_Copy_Of_New_Record_Of_Insert_Class</name>
+        <label>Create Copy Of New Record Of Insert Class</label>
+        <locationX>50</locationX>
+        <locationY>758</locationY>
+        <connector>
+            <targetReference>Final_Update</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Board__c</field>
+            <value>
+                <elementReference>varR_CurrentNewRecord.Board__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>varR_CurrentNewRecord.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>School__c</field>
+            <value>
+                <elementReference>varR_CurrentNewRecord.School__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>My_Class__c</object>
+    </recordCreates>
+    <recordLookups>
+        <description>Here We will Get All Calsses</description>
+        <name>Get_Class_New_And_Old</name>
+        <label>Get Class New And Old</label>
+        <locationX>930</locationX>
+        <locationY>1310</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Class_Old_And_New</targetReference>
+        </connector>
+        <filters>
+            <field>School__c</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>varT_NewAndOldClassSchoolId</elementReference>
+            </value>
+        </filters>
+        <object>Class__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>School__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Here We will Query on Class Object. Find Total Count.</description>
+        <name>Get_Classes</name>
+        <label>Get Classes</label>
+        <locationX>50</locationX>
+        <locationY>278</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_School</targetReference>
+        </connector>
+        <filters>
+            <field>School__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>School__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_SchoolIds</elementReference>
+            </value>
+        </filters>
+        <object>Class__c</object>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Here we will be Query on School object.</description>
+        <name>Get_School</name>
+        <label>Get School</label>
+        <locationX>50</locationX>
+        <locationY>398</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Call_to_Fill_Random_Text_Field</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_SchoolIds</elementReference>
+            </value>
+        </filters>
+        <object>School__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Country__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Here We will Get All Students</description>
+        <name>Get_Students_New_And_Old</name>
+        <label>Get Students New And Old</label>
+        <locationX>930</locationX>
+        <locationY>2222</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Students_Old_And_New</targetReference>
+        </connector>
+        <filters>
+            <field>Custom_School_Id__c</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>varT_NewAndOldClassSchoolId</elementReference>
+            </value>
+        </filters>
+        <object>Student__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Custom_School_Id__c</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <description>Here We will Execute Dml Logic and Update All Maintain Values By instance will updated here.</description>
+        <name>Final_Update</name>
+        <label>Final Update</label>
+        <locationX>644</locationX>
+        <locationY>3662</locationY>
+        <faultConnector>
+            <targetReference>Create_Fault_Error_Record_By_Help_of_Platform_Event_Flow</targetReference>
+        </faultConnector>
+        <inputReference>varR_ListOfSchoolDetails</inputReference>
+    </recordUpdates>
+    <startElementReference>Is_case_Insert_And_Update</startElementReference>
+    <status>Active</status>
+    <subflows>
+        <description>This Subflow : School Random Text Field Fill According the County</description>
+        <name>Call_to_Fill_Random_Text_Field</name>
+        <label>Call to Fill Random Text Field</label>
+        <locationX>50</locationX>
+        <locationY>518</locationY>
+        <connector>
+            <targetReference>Set_School</targetReference>
+        </connector>
+        <flowName>Subflow_School_Random_Text_Field_Fill</flowName>
+        <inputAssignments>
+            <name>VarR_SchoolRecordDetails</name>
+            <value>
+                <elementReference>Get_School</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>varT_RandomText</assignToReference>
+            <name>Var_RandomTextField</name>
+        </outputAssignments>
+    </subflows>
+    <subflows>
+        <description>Here we will Create Fault Error Record By Help of Platform Event Flow</description>
+        <name>Create_Fault_Error_Record_By_Help_of_Platform_Event_Flow</name>
+        <label>Create Fault Error Record By Help of Platform Event Flow</label>
+        <locationX>1502</locationX>
+        <locationY>3782</locationY>
+        <flowName>Subflow_Create_Platform_Event_Record</flowName>
+        <inputAssignments>
+            <name>varT_Element_Category</name>
+            <value>
+                <stringValue>Create Records</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_ElementName</name>
+            <value>
+                <stringValue>Class Handler</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_ErrorMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>VarT_Flow_Name</name>
+            <value>
+                <stringValue>Class Handler</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_ObjectAPIName</name>
+            <value>
+                <stringValue>Class Object</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_RecordID</name>
+            <value>
+                <elementReference>varT_SchoolIds</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_RecordName</name>
+            <value>
+                <stringValue>Class Update</stringValue>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <variables>
+        <description>Here We will hold Boolean Values Insert Case</description>
+        <name>varB_InsertionCase</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Here We will hold Boolean Value in Updation Case</description>
+        <name>varB_UpdationCase</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Here we will hold New School Count</description>
+        <name>varN_NewClassCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>here We will Hold New Students</description>
+        <name>varN_newStudentCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Here We will Count Old Class</description>
+        <name>varN_OldClassCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Here We will Hold Old Students count</description>
+        <name>varN_oldStudentsCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>here we will hold Current new Record</description>
+        <name>varR_CurrentNewRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Class__c</objectType>
+    </variables>
+    <variables>
+        <description>Here We will Hold School Details In instance.</description>
+        <name>varR_InstanceOFSchool</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>Here We will Hold All instance Field Values . And Use This Collection As Final Update</description>
+        <name>varR_ListOfSchoolDetails</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>Here We will Add field Value By create Instance.</description>
+        <name>varR_NewClassInstance</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>Here We will Maintain Field Value Of New Students By Instance</description>
+        <name>varR_NewSchoolInstance</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>Here We will maintain field Value of Old Class.</description>
+        <name>varR_OldClassInstance</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>Here we will Maintain Old Student Field Values.</description>
+        <name>varR_OldSchoolInstance</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>Here We will hold New and Old School ids</description>
+        <name>varT_NewAndOldClassSchoolId</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Here We will hold new Class School id</description>
+        <name>varT_NewClassSchoolIds</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>0</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Here We will hold Old Class School Ids</description>
+        <name>varT_OldClassSchoolIds</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>0</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Here this variable will be hold output of  Subflow</description>
+        <name>varT_RandomText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Here We will hold Schoolids.</description>
+        <name>varT_SchoolIds</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>0</stringValue>
+        </value>
+    </variables>
+</Flow>

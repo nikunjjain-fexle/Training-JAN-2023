@@ -1,0 +1,11 @@
+<template>
+    <div class="slds-m-around_medium">
+        <p>Hello, {greeting}!</p>
+       <lightning-input label="Name" value={greeting} onchange={changeHandler}></lightning-input>
+       <lightning-button label="alert" onclick={onAlert}></lightning-button>
+       <lightning-button label="toast"  onclick={OnTaost}></lightning-button>
+       <lightning-button label="prompt"  onclick={onPrompt}></lightning-button>
+       <lightning-button label="Confirm"  onclick={onConfirm}></lightning-button>
+       
+       </div>    
+</template>

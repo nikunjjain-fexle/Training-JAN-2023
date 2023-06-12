@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Bypass_Debug</name>
+        <label>Bypass Debug</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>varB_BypassAll</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>SubFlow:Bypasslogic {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>SubFlow:Bypasslogic</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Bypass_Debug</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>varB_BypassAll</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+</Flow>

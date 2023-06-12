@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Account_Id_check_here</name>
+        <label>Account Id check here</label>
+        <locationX>270</locationX>
+        <locationY>518</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Assign_Account_Id_to_Contact_Record</targetReference>
+        </connector>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>varT_AccountId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Check_Account_id</name>
+        <label>Check Account id</label>
+        <locationX>50</locationX>
+        <locationY>1094</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Create_Contact</targetReference>
+        </connector>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>Iterate_Over_Contact_Record.Account.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <description>Debug Account ID</description>
+        <name>Debug_Account_ID</name>
+        <label>Debug Account ID</label>
+        <locationX>1722</locationX>
+        <locationY>278</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Contact</targetReference>
+        </connector>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>varT_AccountId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Pass_Contact_Information_Field_Value_Of_Account</name>
+        <label>Pass Contact Information Field  Value Of Account</label>
+        <locationX>182</locationX>
+        <locationY>278</locationY>
+        <actionName>CreateContactRecord</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Iterate_Over_Contact_Record</targetReference>
+        </connector>
+        <inputParameters>
+            <name>inputOfAccountContactInfoFieldDetails</name>
+            <value>
+                <elementReference>varT_AccountContactInforFieldDetails</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <description>Here we will provide  Account Id to Each Contact Record</description>
+        <name>Assign_Account_Id_to_Contact_Record</name>
+        <label>Assign Account Id to Contact Record</label>
+        <locationX>270</locationX>
+        <locationY>638</locationY>
+        <assignmentItems>
+            <assignToReference>Iterate_Over_Contact_Record.AccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varT_AccountId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>contactsToBeInserted</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>here we will assign Account ids</description>
+        <name>Assign_Account_Ids</name>
+        <label>Assign  Account  Ids</label>
+        <locationX>1194</locationX>
+        <locationY>878</locationY>
+        <assignmentItems>
+            <assignToReference>varT_InstanceAndShippingAccountIds</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Got_Contact_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Here we will assign Indtance Account Id To Match Contact Record</description>
+        <name>Assign_Instanace_Account_Id</name>
+        <label>Assign Instanace Account Id</label>
+        <locationX>1282</locationX>
+        <locationY>1238</locationY>
+        <assignmentItems>
+            <assignToReference>varR_InstanceOfInstanceAccount.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Iterate_Got_Contact_Records.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_InstanceOfInstanceAccount.Instance_Account_Id__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varT_InstanceAndShippingAccountIds</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_InstanceOfInstanceAccount.AccountId</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>VarR_ListOfAllContactUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varR_InstanceOfInstanceAccount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Got_Contact_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Here we will assign Shipping Account Id To Match Contact Record</description>
+        <name>Assign_Shipping_Account_Id</name>
+        <label>Assign Shipping Account Id</label>
+        <locationX>1546</locationX>
+        <locationY>1238</locationY>
+        <assignmentItems>
+            <assignToReference>varR_instanceOfShippingAccount.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Iterate_Got_Contact_Records.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_instanceOfShippingAccount.shipping_Account_Id__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varT_InstanceAndShippingAccountIds</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varR_instanceOfShippingAccount.AccountId</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>VarR_ListOfAllContactUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varR_instanceOfShippingAccount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Got_Contact_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>contactsToBeInserted</name>
+        <label>contactsToBeInserted</label>
+        <locationX>270</locationX>
+        <locationY>758</locationY>
+        <assignmentItems>
+            <assignToReference>varR_CollectionOfRecord</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Iterate_Over_Contact_Record</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Over_Contact_Record</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Here we will make decision to check list of Final Update is not empty</description>
+        <name>Check_Is_List_Of_Update_Contact_Will_not_Empty</name>
+        <label>Check Is List Of Update Contact Will not  Empty</label>
+        <locationX>1194</locationX>
+        <locationY>1550</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Not_Empty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>VarR_ListOfAllContactUpdate</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update</targetReference>
+            </connector>
+            <label>Yes Not Empty</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here we will check what filed values come on iteration.</description>
+        <name>Check_Which_Type_of_Field_Values</name>
+        <label>Check Which Type of Field Values</label>
+        <locationX>1546</locationX>
+        <locationY>1118</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_Type_Field_Values_For_Instance_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_TypeOfAccount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Instance account</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Instanace_Account_Id</targetReference>
+            </connector>
+            <label>Check Type Field Values For Instance Account</label>
+        </rules>
+        <rules>
+            <name>Check_Type_Field_Values_For_Shipping_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_TypeOfAccount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Shipping account</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Shipping_Account_Id</targetReference>
+            </connector>
+            <label>Check Type Field Values For Shipping Account</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>here we will make decision The Get Account list is not empty.</description>
+        <name>Is_Check_List_Of_Account_Record_Not_Null</name>
+        <label>Is Check List Of Account Record Not empty</label>
+        <locationX>1458</locationX>
+        <locationY>758</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_List_Of_Account_Records_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Account</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Account_Ids</targetReference>
+            </connector>
+            <label>Yes List Of Account Records Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here We will Check this Case is Insert or Update</description>
+        <name>is_Insert_Or_Update</name>
+        <label>is Insert Or Update ?</label>
+        <locationX>1216</locationX>
+        <locationY>158</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Insret</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varB_InsertCase</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varT_AccountContactInforFieldDetails</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varT_AccountId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Pass_Contact_Information_Field_Value_Of_Account</targetReference>
+            </connector>
+            <label>Insret</label>
+        </rules>
+        <rules>
+            <name>Updation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varB_InsertCase</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varT_AccountId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Debug_Account_ID</targetReference>
+            </connector>
+            <label>Updation</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here we will check list Of Contact Records is not null.</description>
+        <name>Is_List_Of_Contact_Records_Not_Null</name>
+        <label>Is List Of Contact Records Not Null ?</label>
+        <locationX>1722</locationX>
+        <locationY>518</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Contact</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Account</targetReference>
+            </connector>
+            <label>Yes Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Here we will check Record is Null or Not ?</description>
+        <name>Is_Record_Not_Null</name>
+        <label>Is Record  Not Null ?</label>
+        <locationX>182</locationX>
+        <locationY>974</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Pass_Contact_Information_Field_Value_Of_Account</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Account_id</targetReference>
+            </connector>
+            <label>No Null</label>
+        </rules>
+    </decisions>
+    <description>This Subflow Account Handler will be Perform on Insert And Update Case.</description>
+    <interviewLabel>Subflow : Account handler {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subflow : Account handler</label>
+    <loops>
+        <description>here we will iterate Over got contact List</description>
+        <name>Iterate_Got_Contact_Records</name>
+        <label>Iterate Got Contact Records</label>
+        <locationX>1194</locationX>
+        <locationY>998</locationY>
+        <collectionReference>Get_Contact</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Check_Which_Type_of_Field_Values</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Check_Is_List_Of_Update_Contact_Will_not_Empty</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>here we will iterate All output Record of Contact</description>
+        <name>Iterate_Over_Contact_Record</name>
+        <label>Iterate Over Contact Record</label>
+        <locationX>182</locationX>
+        <locationY>398</locationY>
+        <collectionReference>Pass_Contact_Information_Field_Value_Of_Account</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Account_Id_check_here</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Is_Record_Not_Null</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>here we will create new Contact Records</description>
+        <name>Create_Contact</name>
+        <label>Create Contact</label>
+        <locationX>50</locationX>
+        <locationY>1214</locationY>
+        <inputReference>varR_CollectionOfRecord</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <description>Here we will get Account record which will be match Type Filed value</description>
+        <name>Get_Account</name>
+        <label>Get Account</label>
+        <locationX>1458</locationX>
+        <locationY>638</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Check_List_Of_Account_Record_Not_Null</targetReference>
+        </connector>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_TypeOfAccount</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Type</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Here we will get All contact Record Which is related to Acconut</description>
+        <name>Get_Contact</name>
+        <label>Get Contact</label>
+        <locationX>1722</locationX>
+        <locationY>398</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_List_Of_Contact_Records_Not_Null</targetReference>
+        </connector>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_AccountId</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <description>Here we will Updating Final List Of Contact</description>
+        <name>Update</name>
+        <label>Update Conatct</label>
+        <locationX>930</locationX>
+        <locationY>1670</locationY>
+        <faultConnector>
+            <targetReference>Debbing_Error</targetReference>
+        </faultConnector>
+        <inputReference>VarR_ListOfAllContactUpdate</inputReference>
+    </recordUpdates>
+    <startElementReference>is_Insert_Or_Update</startElementReference>
+    <status>Active</status>
+    <subflows>
+        <name>Debbing_Error</name>
+        <label>Debbing Error</label>
+        <locationX>1194</locationX>
+        <locationY>1790</locationY>
+        <flowName>Subflow_Create_Flow_Exception_Record_By_Platform_Event</flowName>
+        <inputAssignments>
+            <name>varT_ErrorMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <variables>
+        <description>Here We will hold boolean Value of Insert Case</description>
+        <name>varB_InsertCase</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>here we will be hold values of Record</description>
+        <name>varR_CollectionOfRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>here we will create instance Of Contact</description>
+        <name>varR_InstanceOfInstanceAccount</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Here we will create instance Of Shipping Account</description>
+        <name>varR_instanceOfShippingAccount</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>here we will save All contact Instance in one List</description>
+        <name>VarR_ListOfAllContactUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>here we will hold value of Account contact information Field.</description>
+        <name>varT_AccountContactInforFieldDetails</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Here We will hold Account id.</description>
+        <name>varT_AccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>We will keep the instance and shipping account IDs here.</description>
+        <name>varT_InstanceAndShippingAccountIds</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>here we will store value of type Field</description>
+        <name>varT_TypeOfAccount</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

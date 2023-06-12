@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Here If Any error Will come Then Debug.</description>
+        <name>Debugging_Flow_Message_Error</name>
+        <label>Debugging Flow Message Error</label>
+        <locationX>578</locationX>
+        <locationY>455</locationY>
+        <actionName>FlowDebugLogger</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>debugMessages</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <decisions>
+        <description>Here Record Of Student is Created And Updating</description>
+        <name>Ready_to_Creating_And_Updating_Student_Records</name>
+        <label>Ready to Creating And Updating Student Records</label>
+        <locationX>314</locationX>
+        <locationY>335</locationY>
+        <defaultConnector>
+            <targetReference>Debugging_Flow_Message_Error</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_inserted_Student</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Class__r.School__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Class__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Inertion</targetReference>
+            </connector>
+            <label>Is inserted Student ?</label>
+        </rules>
+        <rules>
+            <name>Updation_Record_Of_Students</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Class__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.Class__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Updation</targetReference>
+            </connector>
+            <label>Updation Record Of Students</label>
+        </rules>
+    </decisions>
+    <description>Here This Flow Is Insert And Update Of Student Object will execute logic.</description>
+    <interviewLabel>Record-Triggered : Student After Insert And Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Record-Triggered : Student After Insert And Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Ready_to_Creating_And_Updating_Student_Records</startElementReference>
+    <status>Active</status>
+    <subflows>
+        <description>Here We will insert Record Of students</description>
+        <name>Inertion</name>
+        <label>Inertion</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <flowName>Subflow_Student_Handler</flowName>
+        <inputAssignments>
+            <name>varB_InsertionCase</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varB_UpdationCase</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_SchoolIds</name>
+            <value>
+                <elementReference>$Record.Class__r.School__c</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <description>Here we will update Students Field Details</description>
+        <name>Updation</name>
+        <label>Updation</label>
+        <locationX>314</locationX>
+        <locationY>455</locationY>
+        <flowName>Subflow_Student_Handler</flowName>
+        <inputAssignments>
+            <name>varB_InsertionCase</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varB_UpdationCase</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_NewSchoolIds</name>
+            <value>
+                <elementReference>$Record.Class__r.School__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varT_OldSchoolIds</name>
+            <value>
+                <elementReference>$Record__Prior.Class__r.School__c</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <variables>
+        <description>Here holding value total  new Students</description>
+        <name>varN_NewSchoolStudents</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>No Of Students Total Count</description>
+        <name>varN_NoOfStudents</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>No of Student Count Old Parent</description>
+        <name>varN_NoOfStudentsCountOfOldParent</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Here Holding Values Of old School Students</description>
+        <name>varN_OldSchoolStudents</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Here Add all Instance Updation Field Value in This Variable</description>
+        <name>varR_ListOfSchoolsDetails</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>Here Store Old School Instance</description>
+        <name>varR_OldSchoolsDetails</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>Here Add School Instance</description>
+        <name>varR_SchoolsDetails</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>School__c</objectType>
+    </variables>
+    <variables>
+        <description>varaible of Text  Old Parent Details</description>
+        <name>varT_OldParentDetails</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>In this Variable store new and old School Ids</description>
+        <name>varT_SchoolIdsOldAndNew</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

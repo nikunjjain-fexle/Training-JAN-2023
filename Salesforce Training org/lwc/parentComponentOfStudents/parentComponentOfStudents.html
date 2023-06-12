@@ -1,0 +1,27 @@
+<template>
+    <lightning-accordion active-section-name="A">
+        <template for:each={listAllRecords} for:item="acc">
+        <lightning-accordion-section  label={acc.clRecord.Name} key={acc.clRecord.Id}>
+           <lightning-layout>
+            <lightning:layoutItem padding="around-small">
+           <div>
+                <span><b>Active Class : </b>{acc.clRecord.Active__c}</span>
+                <br>
+                <span><b>Board Name   : </b>{acc.clRecord.Board__c}</span>
+                <br>
+            </div>
+        </lightning:layoutItem>
+            <div>
+                <span><b>School Name  : </b>{acc.clRecord.School__c}</span>
+                <br>
+                <span><b>No Of Students : </b>{acc.sizeOfStudents}</span>
+                <br>
+            </div>
+        </lightning-layout>
+            <c-child-component-of-student get-result-of-class-from-parent={acc.listOfStudents} onmarkselect={customEventDeleteByChildComp}></c-child-component-of-student>
+            
+
+        </lightning-accordion-section>
+        </template>
+    </lightning-accordion>    
+</template>

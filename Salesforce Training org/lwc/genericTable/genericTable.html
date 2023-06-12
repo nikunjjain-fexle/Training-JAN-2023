@@ -1,0 +1,74 @@
+<!--
+*
+*  Purpose          :	Generic Table to display different object records using standard LWC table component.
+*
+*  Created Date     :  	12/07/2022
+*
+*  Created By       :  	Abhinav Sharma
+*
+*  Revision Logs    :  	V_1.0 - Created - 12/07/2022
+*
+-->
+<template>
+
+    <!--Markup to be displayed once init logic has been executed successfully-->
+    <template if:true={state.initDone}>
+
+        <div class="slds-m-bottom_small"></div>
+
+        <div class="slds-align_absolute-center">
+
+            <lightning-button label="Get Selected & Go To Wikipedia" onclick={goToWikipedia} variant="brand"></lightning-button>
+            
+            <div class="slds-p-left_x-small"></div>
+            
+            <lightning-button label="Show Toast Message" onclick={popUpToastMessage} variant="neutral"></lightning-button>
+            <lightning-button label="Show Alert Message" onclick={popUpAlertMessage} variant="destructive"></lightning-button>
+            <lightning-button label="Show Prompt Message" onclick={popUpPromptMessage} variant="inverse"></lightning-button>
+            <lightning-button label="Show Confirm Message" onclick={popUpConfirmMessage} variant="brand"></lightning-button>
+
+        </div>
+
+        <div class="slds-m-bottom_small"></div>
+
+        <div class="slds-align_absolute-center">
+            <h1>Demo of CSS Sharing</h1>
+        </div>    
+
+        <div class="slds-align_absolute-center">
+            <p>Simple demo of CSS sharing feature.</p>
+        </div>
+
+        <div class="slds-m-bottom_small"></div>
+
+        <div class="slds-align_absolute-center">
+            <div class="auratokendiv">Aura Token CSS</div>
+        </div>
+
+        <div class="slds-m-bottom_small"></div>
+
+        <div class="slds-align_absolute-center">
+            <div class="lwctokendiv">LWC Token CSS</div>
+        </div>
+
+        <div class="slds-m-bottom_small"></div>
+
+        <!--Known limitation - https://trailblazer.salesforce.com/issues_view?id=a1p4V0000003xajQAA-->
+        <lightning-datatable
+            key-field="Id"
+            data={tableData}
+            columns={columns}
+            show-row-number-column="true"
+            onrowselection={handleRowSelection}
+            selected-rows={selectedRows}
+        >
+        </lightning-datatable>
+
+        <!--slot-->
+        <slot></slot>
+
+        <!--named slot-->
+        <slot name="myNamedSlot"></slot>
+        
+    </template>    
+</template>

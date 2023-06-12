@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>CBSE</fullName>
+        <default>false</default>
+        <label>CBSE</label>
+    </customValue>
+    <customValue>
+        <fullName>ICSE</fullName>
+        <default>false</default>
+        <label>ICSE</label>
+    </customValue>
+    <customValue>
+        <fullName>SBSE</fullName>
+        <default>false</default>
+        <label>SBSE</label>
+    </customValue>
+    <description>This board here multiple state board you can pick.</description>
+    <masterLabel>Board</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

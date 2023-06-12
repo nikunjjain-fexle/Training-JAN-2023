@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>54.0</apiVersion>
+	<isExposed>false</isExposed>
+	<masterLabel>Data Grid - Content</masterLabel>
+	<description>Data Grid Content Component</description>
+</LightningComponentBundle>
